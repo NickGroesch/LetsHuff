@@ -1,0 +1,14 @@
+{{article.link}}
+<div>
+    {{#if article.note.body.length }}
+    {{article.note.body}}
+    <form action="/notes/{{article.note._id}}" method="POST">
+        <input type="text" disabled="" style="visibility:hidden" name="article_id" value={{article._id}}>
+        <button type="submit">Delete Note</button>
+    </form>
+    {{/if}}
+</div>
+<form action="/articles/{{article._id}}" method="POST">
+    <input type="text" name="body" id="">
+    <button type="submit">Make Note</button>
+</form>
