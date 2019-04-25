@@ -36,13 +36,6 @@ module.exports = function(app) {
     });
   });
 
-  //   app.get("/articles", function(req, res) {
-  //     db.Article.find({}, (err, data) => {
-  //       if (err) throw err;
-  //       res.json(data);
-  //     });
-  //   });
-
   app.get("/articles/:id", function(req, res) {
     db.Article.findById(req.params.id)
       .populate("note")
@@ -65,6 +58,7 @@ module.exports = function(app) {
       })
       .catch(err => res.json(err));
   });
+
   // delete notes route
   app.post("/notes/:id", (req, res) => {
     db.Note.findByIdAndDelete({ _id: req.params.id }).then(data => {
