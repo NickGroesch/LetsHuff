@@ -2,9 +2,12 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("../models");
-mongoose.connect("mongodb://localhost/letsHuff", {
-  useNewUrlParser: true
-});
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/letsHuff";
+
+mongoose.connect(MONGODB_URI);
+// mongoose.connect("mongodb://localhost/letsHuff", {
+//   useNewUrlParser: true
+// });
 
 module.exports = function(app) {
   app.get("/", (req, res) => {

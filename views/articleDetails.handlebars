@@ -1,6 +1,6 @@
 <div>{{article.title}}--
     <a class="btn btn-primary" href="{{article.link}}">
-        Huff it right now!</a>
+        Huff it RIGHT NOW!</a>
 </div>
 
 
@@ -8,6 +8,7 @@
     <div class="col-6-md">
         <form id="#make" action="/articles/{{article._id}}" method="POST">
             <input type="text" height="100" size="50" name="body">
+            {{!-- How could I have made the text area work? --}}
             {{!-- <textarea rows="4" cols="50" form="make" name="body">
 </textarea> --}}
             <button type="submit">Make Note</button>
