@@ -2,12 +2,17 @@ var mongoose = require("mongoose");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var db = require("../models");
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/letsHuff";
+// from herouk
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/letsHuff";
+// mongoose.connect(MONGODB_URI);
 
-mongoose.connect(MONGODB_URI);
+// my original
 // mongoose.connect("mongodb://localhost/letsHuff", {
 //   useNewUrlParser: true
 // });
+
+// from deploymentprocess.pdf
+// actually I just put it all on the server, working fine
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
