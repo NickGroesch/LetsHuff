@@ -8,11 +8,8 @@ mongoose.connect("mongodb://localhost/letsHuff", {
 
 module.exports = function(app) {
   app.get("/", (req, res) => {
-    db.Article.find({}, (err, data) => {
+    db.Article.find({}, null, { sort: { _id: -1 } }, (err, data) => {
       if (err) throw err;
-      //   console.log(data);
-
-      //   res.json(data);
       res.render("home", { articles: data });
     });
   });
@@ -35,16 +32,16 @@ module.exports = function(app) {
             console.log("Duplicates not permitted");
           });
       });
-      res.send("Scrape Complete");
+      res.redirect("/");
     });
   });
 
-  app.get("/articles", function(req, res) {
-    db.Article.find({}, (err, data) => {
-      if (err) throw err;
-      res.json(data);
-    });
-  });
+  //   app.get("/articles", function(req, res) {
+  //     db.Article.find({}, (err, data) => {
+  //       if (err) throw err;
+  //       res.json(data);
+  //     });
+  //   });
 
   app.get("/articles/:id", function(req, res) {
     db.Article.findById(req.params.id)
@@ -55,22 +52,16 @@ module.exports = function(app) {
   });
 
   app.post("/articles/:id", function(req, res) {
-    console.log(req.body);
-
     db.Note.create(req.body)
       .then(function(dbNote) {
-        // console.log(req.params.id);
-        // console.log(dbNote);
         return db.Article.findOneAndUpdate(
           { _id: req.params.id },
-          //   to do, make notes a push instead of set
           { $push: { note: dbNote._id } },
           { new: true }
         );
       })
       .then(x => {
-        // console.log("x", x);
-        res.json(x);
+        res.redirect(`/articles/${req.params.id}`);
       })
       .catch(err => res.json(err));
   });

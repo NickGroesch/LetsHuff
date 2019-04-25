@@ -1,30 +1,34 @@
 <div>{{article.title}}--
-    <a href="{{article.link}}">
+    <a class="btn btn-primary" href="{{article.link}}">
         Huff it right now!</a>
 </div>
 
 
 <div class="row">
-    <div class="col-3">
+    <div class="col-6-md">
+        <form id="#make" action="/articles/{{article._id}}" method="POST">
+            <input type="text" height="100" size="50" name="body">
+            {{!-- <textarea rows="4" cols="50" form="make" name="body">
+</textarea> --}}
+            <button type="submit">Make Note</button>
+        </form>
+
+    </div>
+
+    <div class="col-6-md">
         {{#each article.note}}{{#if this.body.length }}
         <div class="card">
             <div class="card-body">
 
                 <p class="card-text">{{this.body}}</p>
-                <form action="/notes/{{article.note._id}}" method="POST">
-                    <input type="textbox" disabled="" style="visibility:hidden" name="article_id" value={{article._id}}>
+                <form action="/notes/{{this._id}}" method="POST">
+                    <input type="textbox" disabled="" style="visibility:hidden" name="article_id" value={{this._id}}>
                     <button type="submit" class="btn btn-danger">Delete Note</button>
                 </form>
             </div>
         </div>
         {{/if}}
         {{/each}}
-    </div>
-    {{!-- {{this.body}} --}}
-    <div class="col-9">
-        <form action="/articles/{{article._id}}" method="POST">
-            <input type="text" name="body" id="">
-            <button type="submit">Make Note</button>
-        </form>
+
     </div>
 </div>

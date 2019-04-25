@@ -5,15 +5,20 @@
     <div class="card-body">
         <div class="row">
             <div class="col-3">
-
+                <a target="_blank" href="articles/{{this._id}}" class="btn btn-success">I Wanna Huff That</a>
             </div>
             <div class="col-9">
-                <h5 class="card-title"><a target="_blank" href="articles/{{this._id}}">"{{this.title}}</a></h5>
-                {{!-- <p class="card-text">This is where the review goes.</p> --}}
-                <a href="#" class="btn btn-success">I Wanna Huff That</a>
-                <a href="#" class="btn btn-warning">Make A Note</a>
-                <a href="#" class="btn btn-info">View all Notes</a>
-                <div class="hidden" id="notes{{this._id}}"></div>
+                <h5 class="card-title">{{this.title}}</h5>
+                {{!-- <a target="_blank" href="articles/{{this._id}}" class="btn btn-success">I Wanna Huff That</a> --}}
+                {{!-- <a href="#" class="btn btn-warning">Make A Note</a>
+                <button class="btn btn-primary" type="button" data-toggle="collapse"
+                    data-target="#collapseExample{{this._id}}" aria-expanded="false"
+                    aria-controls="collapseExample{{this._id}}">
+                    View All Notes
+                </button> --}}
+
+
+
             </div>
         </div>
         {{!-- psuedo modal for notes dialog --}}
