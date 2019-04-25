@@ -1,7 +1,7 @@
 var express = require("express");
 var logger = require("morgan");
 var expressHb = require("express-handlebars");
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 var mongoose = require("mongoose");
 
 var app = express();
